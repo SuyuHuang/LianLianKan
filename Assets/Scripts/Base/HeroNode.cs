@@ -5,9 +5,9 @@
     {
    
         public int X;
-
  
         public int Y;
+        public int count;
 
         public HeroNode(int x,int y)
         {
