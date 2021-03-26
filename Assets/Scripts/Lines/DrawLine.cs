@@ -51,6 +51,17 @@ public class DrawLine : SingleTemplate<DrawLine>
     public void DrawLinkLine(GameObject g1, GameObject g2, int linkType, Vector3 z1, Vector3 z2)
     {
         EliminatedAudio.Play();
+        if (BattleManager.level != 0)
+        {
+           
+            z1 = z1 + new Vector3(MapManager.xdis, MapManager.ydis, 0);
+            z2 = z2 + new Vector3(MapManager.xdis, MapManager.ydis, 0);
+        }
+        else
+        {
+            z1 = z1 + new Vector3(DialogueMap.xdis, DialogueMap.ydis, 0);
+            z2 = z2 + new Vector3(DialogueMap.xdis, DialogueMap.ydis, 0);
+        }
         eliminated.SetBool("Eliminate",true);
         switch (linkType)
         {

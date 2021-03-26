@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,18 +7,23 @@ using UnityEngine.UI;
 public class BaseHero : MonoBehaviour
 {
     // Start is called before the first frame update
-    public  Slider EnemyHPSlider;
-    public Slider PlayerHPSlider;
+    public   Slider EnemyHPSlider;
+    public  Slider PlayerHPSlider;
     public  static float attack=0.02f;
-    public float healamount=0.005f;
+    public static float healamount=0.005f;
     public static bool iscorrect = false;
     public static bool darkpersist = false;
     public static int value;
-    public float defend;
+    public static float defend;
     public int coin;
+   
+   
 
     void Start()
     {
+        
+        PlayerHPSlider = GameObject.FindGameObjectWithTag("playerTimer").GetComponent<Slider>();
+        EnemyHPSlider = GameObject.FindGameObjectWithTag("enemyTimer").GetComponent<Slider>();
         
     }
 
@@ -25,6 +31,13 @@ public class BaseHero : MonoBehaviour
     void Update()
     {
      
+       
+    }
+
+    public  void Level1Battle(Slider PlayerHPSlider1, Slider EnemyHPSlider1)
+    {
+        PlayerHPSlider = PlayerHPSlider1;
+        EnemyHPSlider = EnemyHPSlider1;
         if (iscorrect)
         {
             BaseDamage();
@@ -52,11 +65,23 @@ public class BaseHero : MonoBehaviour
         }
         iscorrect = false;
     }
-    public void Luna()
+    public  void Luna()
     {
         darkpersist = true;
+        causeDamage(attack );
     }
-    public  void Clinkz()
+    public   void Clinkz()
+    {
+        if (Enemy.immutablecount > 0)
+        {
+            Enemy.immutablecount -= 1;
+        }
+        else
+        {
+            causeDamage(attack*2);
+        }
+    }
+    public  void BaseDamage()
     {
         if (Enemy.immutablecount > 0)
         {
@@ -65,34 +90,30 @@ public class BaseHero : MonoBehaviour
         else
         {
             EnemyHPSlider.value -= attack;
+           
+        }
+        if (EnemyHPSlider.value <= 0)
+        {
+           
+            GameManager.IsEnemyKilled = true;
         }
     }
-    public void BaseDamage()
-    {
-        if (Enemy.immutablecount > 0)
-        {
-            Enemy.immutablecount -= 1;
-        }
-        else
-        {
-            EnemyHPSlider.value -= attack;
-        }
-    }
-    public void Knight()
+    public  void Knight()
     {
       
         PlayerHPSlider.value += healamount;
+        causeDamage(attack);
 
     }
-    public void Hoodwink()
+    public  void Hoodwink()
     {
 
         float Randomcount = Random.Range(0, 100);
-        Debug.Log(Randomcount);
         if (Randomcount > 50)
         {
             
-            EnemyHPSlider.value -= attack *2;
+            
+            causeDamage(attack * 2);
         }
         else
         {
@@ -100,7 +121,23 @@ public class BaseHero : MonoBehaviour
         }
 
     }
-    public void Pagna()
+    public void causeDamage(float damage)
+    {
+        EnemyHPSlider.value -= damage;
+ 
+        Dragon dragon = new Dragon();
+        if (BattleManager.level == 1)
+        {
+            GameObject.FindGameObjectWithTag("enemy").GetComponent<Sate>().takeDamage(damage);
+        }
+        else if (BattleManager.level == 2)
+        {
+            dragon.takeDamage(damage);
+        }
+
+    }
+  
+    public  void Pagna()
     {
         if (Enemy.immutablecount > 0)
         {
@@ -108,7 +145,8 @@ public class BaseHero : MonoBehaviour
         }
         else
         {
-            EnemyHPSlider.value -= attack / 2;
+            causeDamage(attack*3/2);
+           
         }
         PlayerHPSlider.value += healamount/2;
 

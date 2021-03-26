@@ -1,0 +1,50 @@
+SHOPPER
+Hey, you are awake.
+PLAYER
+Ahhhh... Where I am.
+SHOPPER
+You fell into the Dota world.
+PLAYER
+The Dota World? What's that?
+SHOPPER
+It's hard to specify clearly. 
+SHOPPER
+I don't really know what it is.
+PLAYER
+Fine, what should I do to escape from it?
+SHOPPER
+Eliminate the hero bricks, cast different skills and defeat the enemy.
+PLAYER
+By what rules?
+SHOPPER
+LianLianKan
+PLAYER
+What is LianLianKan?
+PLAYER
+I have never heard of this.
+SHOPPER
+It's a traditional Chinese puzzle game.
+SHOPPER
+Two bricks can be eliminated
+SHOPPER
+Only when their link is less than or equal to 3 corners
+SHOPPER
+So,let's have a try
+SHOPPER
+Try to beat your enemies before your timer runs out!
+PLAYER
+What timer?
+SHOPPER
+Just like this
+SHOPPER
+It will fade over time.
+SHOPPER
+And if you eliminate the bricks, it will increase.
+SHOPPER
+Some hero bricks have the ability to recover time as well.
+SHOPPER
+Eliminate all the bricks. Remember less than 3 corners.
+SHOPPER
+Now that you have eliminated all
+
+

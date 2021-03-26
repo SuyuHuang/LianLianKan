@@ -25,12 +25,22 @@ namespace Scripts.Base
                 if (i == x2)
                 {
                     return true;
-                } 
-
-                if (MapManager.TestMap[i, y2] != -1)
+                }
+                if (BattleManager.level != 0)
                 {
-                    break;
-                } 
+
+                    if (MapManager.TestMap[i, y2] != -1)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    if (DialogueMap.TestMap[i, y2] != -1)
+                    {
+                        break;
+                    }
+                }
             }
 
             return false;
@@ -51,12 +61,21 @@ namespace Scripts.Base
                 if (i == y2)
                 {
                     return true;
-                } 
-
-                if (MapManager.TestMap[x1, i] != -1)
+                }
+                if (BattleManager.level != 0)
                 {
-                    break;
-                } 
+                    if (MapManager.TestMap[x1, i] != -1)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    if (DialogueMap.TestMap[x1, i] != -1)
+                    {
+                        break;
+                    }
+                }
             }
 
             return false;
@@ -65,6 +84,8 @@ namespace Scripts.Base
     
         public bool OneCornerLink(int x1, int y1, int x2, int y2, out Vector3 Z1)
         {
+            if (BattleManager.level != 0) { 
+
             if (MapManager.TestMap[x1, y2] == -1)
             {
                 if (X_Link(x1, x2, y2) && Y_Link(x1, y1, y2))
@@ -82,6 +103,29 @@ namespace Scripts.Base
                     return true;
                 }
             }
+            }
+            else
+            {
+
+                if (DialogueMap.TestMap[x1, y2] == -1)
+                {
+                    if (X_Link(x1, x2, y2) && Y_Link(x1, y1, y2))
+                    {
+                        Z1 = new Vector3(x1 * DialogueMap.XMove, -y2 * DialogueMap.YMove, 0);
+                        return true;
+                    }
+                }
+
+                if (DialogueMap.TestMap[x2, y1] == -1)
+                {
+                    if (X_Link(x1, x2, y1) && Y_Link(x2, y1, y2))
+                    {
+                        Z1 = new Vector3(x2 * DialogueMap.XMove, -y1 * DialogueMap.YMove, 0);
+                        return true;
+                    }
+                }
+            }
+
 
             Z1 = new Vector3(0, 0, 0);
             return false;
@@ -90,75 +134,150 @@ namespace Scripts.Base
       
         public bool TwoCornerLink(int x1, int y1, int x2, int y2, out Vector3 Z1, out Vector3 Z2)
         {
-            
-            for (int i = x1 + 1; i < MapManager.ColumNum + 2; i++)
+            if (BattleManager.level != 0)
             {
-                if (MapManager.TestMap[i, y1] == -1)
+                for (int i = x1 + 1; i < MapManager.ColumNum + 2; i++)
                 {
-                    if (OneCornerLink(i, y1, x2, y2, out Z1))
+                    if (MapManager.TestMap[i, y1] == -1)
                     {
-                        Z2 = new Vector3(i * MapManager.XMove, -y1 * MapManager.YMove, 0);
-                        return true;
+                        if (OneCornerLink(i, y1, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(i * MapManager.XMove, -y1 * MapManager.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (MapManager.TestMap[i, y1] != -1)
+                    {
+                        break;
                     }
                 }
 
-                if (MapManager.TestMap[i, y1] != -1)
+
+                for (int i = x1 - 1; i > -1; i--)
                 {
-                    break;
+                    if (MapManager.TestMap[i, y1] == -1)
+                    {
+                        if (OneCornerLink(i, y1, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(i * MapManager.XMove, -y1 * MapManager.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (MapManager.TestMap[i, y1] != -1)
+                    {
+                        break;
+                    }
+                }
+
+
+                for (int i = y1 + 1; i < MapManager.RowNum + 2; i++)
+                {
+                    if (MapManager.TestMap[x1, i] == -1)
+                    {
+                        if (OneCornerLink(x1, i, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(x1 * MapManager.XMove, -i * MapManager.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (MapManager.TestMap[x1, i] != -1)
+                    {
+                        break;
+                    }
+                }
+
+
+                for (int i = y1 - 1; i > -1; i--)
+                {
+                    if (MapManager.TestMap[x1, i] == -1)
+                    {
+                        if (OneCornerLink(x1, i, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(x1 * MapManager.XMove, -i * MapManager.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (MapManager.TestMap[x1, i] != -1)
+                    {
+                        break;
+                    }
                 }
             }
-
-         
-            for (int i = x1 - 1; i > -1; i--)
+            else
             {
-                if (MapManager.TestMap[i, y1] == -1)
+                for (int i = x1 + 1; i < DialogueMap.ColumNum + 2; i++)
                 {
-                    if (OneCornerLink(i, y1, x2, y2, out Z1))
+                    if (DialogueMap.TestMap[i, y1] == -1)
                     {
-                        Z2 = new Vector3(i * MapManager.XMove, -y1 * MapManager.YMove, 0);
-                        return true;
+                        if (OneCornerLink(i, y1, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(i * DialogueMap.XMove, -y1 * DialogueMap.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (DialogueMap.TestMap[i, y1] != -1)
+                    {
+                        break;
                     }
                 }
 
-                if (MapManager.TestMap[i, y1] != -1)
-                {
-                    break;
-                }
-            }
 
-         
-            for (int i = y1 + 1; i < MapManager.RowNum + 2; i++)
-            {
-                if (MapManager.TestMap[x1, i] == -1)
+                for (int i = x1 - 1; i > -1; i--)
                 {
-                    if (OneCornerLink(x1, i, x2, y2, out Z1))
+                    if (DialogueMap.TestMap[i, y1] == -1)
                     {
-                        Z2 = new Vector3(x1 * MapManager.XMove, -i * MapManager.YMove, 0);
-                        return true;
+                        if (OneCornerLink(i, y1, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(i * DialogueMap.XMove, -y1 * DialogueMap.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (DialogueMap.TestMap[i, y1] != -1)
+                    {
+                        break;
                     }
                 }
 
-                if (MapManager.TestMap[x1, i] != -1)
-                {
-                    break;
-                }
-            }
 
-            
-            for (int i = y1 - 1; i > -1; i--)
-            {
-                if (MapManager.TestMap[x1, i] == -1)
+                for (int i = y1 + 1; i < DialogueMap.RowNum + 2; i++)
                 {
-                    if (OneCornerLink(x1, i, x2, y2, out Z1))
+                    if (DialogueMap.TestMap[x1, i] == -1)
                     {
-                        Z2 = new Vector3(x1 * MapManager.XMove, -i * MapManager.YMove, 0);
-                        return true;
+                        if (OneCornerLink(x1, i, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(x1 * DialogueMap.XMove, -i * DialogueMap.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (DialogueMap.TestMap[x1, i] != -1)
+                    {
+                        break;
                     }
                 }
 
-                if (MapManager.TestMap[x1, i] != -1)
+
+                for (int i = y1 - 1; i > -1; i--)
                 {
-                    break;
+                    if (DialogueMap.TestMap[x1, i] == -1)
+                    {
+                        if (OneCornerLink(x1, i, x2, y2, out Z1))
+                        {
+                            Z2 = new Vector3(x1 * DialogueMap.XMove, -i * DialogueMap.YMove, 0);
+                            return true;
+                        }
+                    }
+
+                    if (DialogueMap.TestMap[x1, i] != -1)
+                    {
+                        break;
+                    }
                 }
             }
 

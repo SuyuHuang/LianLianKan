@@ -9,18 +9,31 @@ public class Sate : Enemy
     public static bool ishurt=false;
     public static bool isnormal = true;
     public static float countime;
-    public Slider EnemyHPSlider;
-    public Slider PlayerHPSlider;
+    public  GameObject floatPoint;
+ 
+
     public float attack = 0.02f;
     public float healAmount = 0.02f;
     public GameObject Maps;
     public float hideTime;
-   
+    public Slider EnemyHPSlider;
+    public Slider PlayerHPSlider;
+
+
+
+
+
 
     // Start is called before the first frame update
     new void Start()
     {
+
+
+/*        floatPoint = GameObject.FindGameObjectWithTag("floatPoint");*/
+        PlayerHPSlider = GameObject.FindGameObjectWithTag("playerTimer").GetComponent<Slider>();
+        EnemyHPSlider = GameObject.FindGameObjectWithTag("enemyTimer").GetComponent<Slider>();
         Anim = GetComponent<Animator>();
+        Maps = GameObject.FindGameObjectWithTag("maps");
     }
    new  private void Awake()
     {
@@ -88,6 +101,12 @@ public class Sate : Enemy
     {
         PlayerHPSlider.value -= attack;
     }
+    public  void takeDamage(double damage)
+    {
+  
+        GameObject gb= Instantiate(floatPoint,new Vector3(-8,8,0), Quaternion.identity) as GameObject;
+        gb.transform.GetComponent<TextMesh>().text = ((int)(damage * 1200)).ToString();
+    }
     public void Heal()
     {
         EnemyHPSlider.value += healAmount;
@@ -119,8 +138,13 @@ public class Sate : Enemy
         hideTime = 2f;
      
     }
-    void backtoNormal()
+   
+    public void backtoNormal()
     {
         Anim.SetBool("IsAttacked", false);
+    }
+    public void saySomething()
+    {
+        Debug.Log("something");
     }
 }

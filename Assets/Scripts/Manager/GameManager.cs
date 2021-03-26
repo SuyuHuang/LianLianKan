@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts
 {
@@ -6,6 +7,9 @@ namespace Scripts
     {
         public static bool IsPause = false;
         public static bool IsOver = false;
+        public static bool IsEnemyKilled = false;
+        public static bool IsFinished = false;
+        public GameObject level2Pass;
 
 
         /// <summary>
@@ -13,11 +17,37 @@ namespace Scripts
         /// </summary>
         private void Update()
         {
-            if (IsOver)
+            if (BattleManager.level != 0)
             {
-                Debug.Log("GameOver");
-                /*if (IsOver)*/
-                UIManager.Instance.ShowOverPanel();
+                if (IsOver)
+                {
+                    Debug.Log("GameOver");
+                    /*if (IsOver)*/
+                    UIManager.Instance.ShowOverPanel();
+                }
+                if (IsEnemyKilled)
+                {
+                    if (level2pass.dialogueFinished == false)
+                    {
+                        level2Pass.SetActive(true);
+                    }
+                    else {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                        BattleManager.level += 1;
+                        IsEnemyKilled = false;
+                    } 
+                }
+            }
+            else
+            {
+
+             
+                Debug.Log(JudgeLink.level0count);
+                if (JudgeLink.level0count == 8)
+                {
+                    IsFinished = true;
+                    
+                }
             }
         }
     }

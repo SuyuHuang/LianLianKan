@@ -16,7 +16,8 @@ public class JudgeLink : Judge
     public Text[] Count;
  
     public int X1, X2, Y1, Y2, Value1, Value2;
-
+    public static int level0count;
+   
   
     public bool Select = false;
     public int herocount;
@@ -72,12 +73,27 @@ public class JudgeLink : Judge
         {
             if (IsLink(X1, Y1, X2, Y2))
             {
-               
-                MapManager.CountCollect[Value1]++;
-                updateNumber(Value1, MapManager.CountCollect[Value1]);
+                if (BattleManager.level != 0)
+                {
+                    
+                    MapManager.CountCollect[Value1]++;
+                    updateNumber(Value1, MapManager.CountCollect[Value1]);
+                }
+                else
+                {
+                    level0count++;
+                }
                 ToolManager.InitTool(ToolType.TimePlus);
                 /*  hero.damage();*/
-                Sate.ishurt = true;
+                if (BattleManager.level == 1)
+                {
+                    Sate.ishurt = true;
+                }
+                else if (BattleManager.level == 2)
+                {
+                    Dragon.isHurt = true;
+                }
+                
                 MapManager.value = Value1;
                 MapManager.isactive = true;
                 BaseHero.value = Value1;
@@ -88,7 +104,7 @@ public class JudgeLink : Judge
             {
                 ToolManager.InitTool(ToolType.TimeDecrease);
             }
-            Debug.Log("The Same Value");
+          
         }
      
         else
@@ -152,10 +168,20 @@ public class JudgeLink : Judge
 
         Destroy(G1);
         Destroy(G2);
-        MapManager.TestMap[x1, y1] = -1; 
-        MapManager.TestMap[x2, y2] = -1;
-        JudgeManager.Instance.CheckMap(x1, y1, x2, y2);
-        x1 = x2 = y1 = y2 = Value1 = Value2 = 0;
+        if (BattleManager.level != 0)
+        {
+            MapManager.TestMap[x1, y1] = -1;
+            MapManager.TestMap[x2, y2] = -1;
+            JudgeManager.Instance.CheckMap(x1, y1, x2, y2);
+            x1 = x2 = y1 = y2 = Value1 = Value2 = 0;
+        }
+        else
+        {
+            DialogueMap.TestMap[x1, y1] = -1;
+            DialogueMap.TestMap[x2, y2] = -1;
+            JudgeManager.Instance.CheckMap(x1, y1, x2, y2);
+            x1 = x2 = y1 = y2 = Value1 = Value2 = 0;
+        }
     }
 
   

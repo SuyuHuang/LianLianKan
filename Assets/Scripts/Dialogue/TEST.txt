@@ -1,0 +1,12 @@
+PLAYER
+Where is there?
+SHOPPER
+This is the first level.
+SHOPPER
+You should defeat the sate enemy.
+SHOPPER
+Who can disable your map for a while.
+SHOPPER
+Gook Luck.
+PLAYER
+Wait....What?

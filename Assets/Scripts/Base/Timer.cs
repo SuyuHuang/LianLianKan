@@ -34,12 +34,23 @@ public class Timer : SingleTemplate<Timer>
 
 	private void Update()
 	{
-		if ((GameManager.IsPause == false) && (GameManager.IsOver == false))
+		if (BattleManager.level != 0)
 		{
-			_slider.value -= 0.001f;
-			
-		}
+			if ((GameManager.IsPause == false) && (GameManager.IsOver == false))
+			{
+				_slider.value -= 0.0001f;
 
-		if (_slider.value <= 0) GameManager.IsOver = true;
+			}
+
+			if (_slider.value <= 0) GameManager.IsOver = true;
+		}
+        else
+        {
+			if ((GameManager.IsPause == false) && (GameManager.IsOver == false))
+			{
+				_slider.value -= 0.0001f;
+
+			}
+		}
 	}
 }

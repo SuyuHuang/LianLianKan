@@ -14,6 +14,8 @@ public class MapManager : MonoBehaviour
     public static int RowNum = 10;
 
     public static int ColumNum = 10;
+    public static float xdis=1.5f;
+    public static float ydis;
 
     public static int[,] TempMap;
     public GameObject[] nodeList;
@@ -41,8 +43,10 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        InitAllMap();
-        InitTools();
+       
+            InitAllMap();
+            InitTools();
+        
        
       
     }
@@ -178,7 +182,7 @@ public class MapManager : MonoBehaviour
         {
             for (int x = 1; x < ColumNum + 1; x++)
             {
-                g = Instantiate(HeroPrefabs[TestMap[x, y]], new Vector3(x * XMove+2, -y * YMove, 0),
+                g = Instantiate(HeroPrefabs[TestMap[x, y]], new Vector3(x * XMove+xdis, -y * YMove+ydis, 0),
                         Quaternion.identity)
                     .gameObject;
                 g.GetComponent<Hero>().X = x; 

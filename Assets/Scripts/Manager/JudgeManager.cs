@@ -105,8 +105,8 @@ namespace Scripts
                     tempNode = tempNode.Next;
                 }
             }
-            Debug.Log("Game pass");
-            GameManager.IsOver = true;
+            
+          /*  GameManager.IsOver = true;*/
             return true;
         }
     }
