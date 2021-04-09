@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueSystem : MonoBehaviour
 {
     [Header("UI")]
-    public Text textLabel;
+    public TMP_Text textLabel;
     public Text nameLabel;
     public Image faceImage;
  

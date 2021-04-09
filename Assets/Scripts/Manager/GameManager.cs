@@ -10,6 +10,8 @@ namespace Scripts
         public static bool IsEnemyKilled = false;
         public static bool IsFinished = false;
         public GameObject level2Pass;
+        
+      
 
 
         /// <summary>

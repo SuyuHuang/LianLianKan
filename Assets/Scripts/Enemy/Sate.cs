@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,8 @@ public class Sate : Enemy
     public static bool isnormal = true;
     public static float countime;
     public  GameObject floatPoint;
- 
+    public ScriptableHero thisHero;
+
 
     public float attack = 0.02f;
     public float healAmount = 0.02f;
@@ -34,6 +36,7 @@ public class Sate : Enemy
         EnemyHPSlider = GameObject.FindGameObjectWithTag("enemyTimer").GetComponent<Slider>();
         Anim = GetComponent<Animator>();
         Maps = GameObject.FindGameObjectWithTag("maps");
+         EnemyHPSlider.value= thisHero.EnemyHP ;
     }
    new  private void Awake()
     {
@@ -43,9 +46,10 @@ public class Sate : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-     
-     
-            SwitchAnim();
+       thisHero.EnemyHP= EnemyHPSlider.value ;
+
+
+        SwitchAnim();
        
 
 
@@ -122,18 +126,20 @@ public class Sate : Enemy
     }
     public void HideMap()
     {
-        if (BaseHero.darkpersist)
+        if (thisHero.darkpersist)
         {
-            BaseHero.darkpersist = false;
+           thisHero.darkpersist = false;
         }
         else
         {
-            Maps.SetActive(false);
+            if (!GameManager.IsPause)
+                Maps.SetActive(false);
             hideTime = 2f;
         }
     }
     public void ShowMap()
     {
+        if(!GameManager.IsPause)
         Maps.SetActive(true);
         hideTime = 2f;
      

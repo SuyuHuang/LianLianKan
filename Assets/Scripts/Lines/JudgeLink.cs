@@ -23,8 +23,10 @@ public class JudgeLink : Judge
     public int herocount;
 
     public int LinkType;
+    public AudioSource EliminatedAudio;
 
-/*    BaseHero hero = new BaseHero();*/
+
+    /*    BaseHero hero = new BaseHero();*/
     public Vector3 Z1, Z2;
 
     void Update()
@@ -36,7 +38,7 @@ public class JudgeLink : Judge
     }
     void Start()
     {
- 
+        EliminatedAudio = GetComponent<AudioSource>();
     }
     public void IsSelect()
     {
@@ -98,7 +100,10 @@ public class JudgeLink : Judge
                 MapManager.isactive = true;
                 BaseHero.value = Value1;
                 BaseHero.iscorrect = true;
-                
+                if(Value1<=4)
+                EliminatedAudio.Play();
+
+
             }
             else
             {
@@ -117,6 +122,9 @@ public class JudgeLink : Judge
     {
         if(0<=value&&value<=4)
         Count[value].text = count.ToString();
+       
+           
+       
     }
     public bool IsLink(int x1, int y1, int x2, int y2)
     {

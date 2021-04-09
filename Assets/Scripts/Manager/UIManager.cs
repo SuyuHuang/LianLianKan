@@ -14,16 +14,22 @@ public class UIManager : SingleTemplate<UIManager>
     public Button ReturnButton;
     public Button ExitButton;
 
+    public Button ShopResumeButton;
+    public Button ShopButton;
 
     public GameObject PausePanel;
+    public GameObject ShopPanel;
 
 
     public GameObject OverPanel;
     public GameObject Maps;
+    public GameObject Enemy;
 
 
     private void Awake()
     {
+        ShopButton.onClick.AddListener(OnShopClick);
+        ShopResumeButton.onClick.AddListener(OnShopResumeClick);
         PauseButton.onClick.AddListener(OnPauseClick);
         RestartButton.onClick.AddListener(OnRestartClick);
         ReturnButton.onClick.AddListener(OnReturnClick);
@@ -34,6 +40,22 @@ public class UIManager : SingleTemplate<UIManager>
     private void OnPauseClick()
     {
         PausePanel.SetActive(true);
+        Maps.SetActive(false);
+        GameManager.IsPause = true;
+        Enemy.SetActive(false);
+    }
+
+    private void OnShopResumeClick()
+    {
+        ShopPanel.SetActive(false);
+        Maps.SetActive(true);
+        GameManager.IsPause = false;
+        Enemy.SetActive(true);
+    }
+    private void OnShopClick()
+    {
+        Enemy.SetActive(false);
+        ShopPanel.SetActive(true);
         Maps.SetActive(false);
         GameManager.IsPause = true;
     }
@@ -48,6 +70,7 @@ public class UIManager : SingleTemplate<UIManager>
         PausePanel.SetActive(false);
         Maps.SetActive(true);
         GameManager.IsPause = false;
+        Enemy.SetActive(true);
     }
 
     private void OnRestartClick()

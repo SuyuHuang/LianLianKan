@@ -1,6 +1,7 @@
 ﻿using Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,29 +10,55 @@ public class BaseHero : MonoBehaviour
     // Start is called before the first frame update
     public   Slider EnemyHPSlider;
     public  Slider PlayerHPSlider;
-    public  static float attack=0.02f;
-    public static float healamount=0.005f;
     public static bool iscorrect = false;
-    public static bool darkpersist = false;
+
+    bool isOpen;
+    public GameObject myBag;
+    public AudioSource CoinAudio;
+    public TMP_Text CoinCount;
+    public ScriptableHero thisHero;
     public static int value;
-    public static float defend;
-    public int coin;
-   
-   
+
+
 
     void Start()
     {
-        
+        PlayerHPSlider.value= thisHero.HP ;
+
         PlayerHPSlider = GameObject.FindGameObjectWithTag("playerTimer").GetComponent<Slider>();
         EnemyHPSlider = GameObject.FindGameObjectWithTag("enemyTimer").GetComponent<Slider>();
+        CoinCount.text = thisHero.coinnumber + "";
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-     
-       
+        thisHero.HP = PlayerHPSlider.value;
+        OpenMyBag();
+        UpdateCoinNumber();
+
+
+    }
+   
+
+    public  void UpdateCoinNumber()
+    {
+        if (ItemOnSale.coinChanged == true)
+        {
+            CoinCount.SetText(thisHero.coinnumber + "");
+            ItemOnSale.coinChanged = false;
+
+        }
+    }
+    void OpenMyBag()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            myBag.SetActive(!myBag.activeSelf);
+            InventoryManager.RefreshItem();
+        }
     }
 
     public  void Level1Battle(Slider PlayerHPSlider1, Slider EnemyHPSlider1)
@@ -41,23 +68,24 @@ public class BaseHero : MonoBehaviour
         if (iscorrect)
         {
             BaseDamage();
-
+            GetCoin();
+       
 
             switch (value)
             {
-                case 1:
+                case 0:
                     Clinkz();
                     break;
-                case 2:
+                case 1:
                     Hoodwink();
                     break;
-                case 3:
+                case 2:
                     Knight();
                     break;
-                case 4:
+                case 3:
                     Luna();
                     break;
-                case 5:
+                case 4:
                     Pagna();
                     break;
 
@@ -67,9 +95,29 @@ public class BaseHero : MonoBehaviour
     }
     public  void Luna()
     {
-        darkpersist = true;
-        causeDamage(attack );
+        thisHero.darkpersist = true;
+        causeDamage(thisHero.attack );
     }
+
+    public  void GetCoin()
+    {
+     
+        if (value == 5)
+        {
+            int number = (int)Random.Range(77, 91);
+            thisHero.coinnumber += number;
+            CoinAudio.Play();
+
+        }
+        else
+        {
+            int number = (int)Random.Range(34, 39);
+            thisHero.coinnumber += number;
+        }
+        CoinCount.SetText(thisHero.coinnumber +"");
+    }
+
+  
     public   void Clinkz()
     {
         if (Enemy.immutablecount > 0)
@@ -78,7 +126,7 @@ public class BaseHero : MonoBehaviour
         }
         else
         {
-            causeDamage(attack*2);
+            causeDamage(thisHero.attack *2);
         }
     }
     public  void BaseDamage()
@@ -89,7 +137,7 @@ public class BaseHero : MonoBehaviour
         }
         else
         {
-            EnemyHPSlider.value -= attack;
+            EnemyHPSlider.value -= thisHero.attack;
            
         }
         if (EnemyHPSlider.value <= 0)
@@ -101,8 +149,8 @@ public class BaseHero : MonoBehaviour
     public  void Knight()
     {
       
-        PlayerHPSlider.value += healamount;
-        causeDamage(attack);
+        PlayerHPSlider.value += thisHero.healamount;
+        causeDamage(thisHero.attack);
 
     }
     public  void Hoodwink()
@@ -113,7 +161,7 @@ public class BaseHero : MonoBehaviour
         {
             
             
-            causeDamage(attack * 2);
+            causeDamage(thisHero.attack * 2);
         }
         else
         {
@@ -145,10 +193,10 @@ public class BaseHero : MonoBehaviour
         }
         else
         {
-            causeDamage(attack*3/2);
+            causeDamage(thisHero.attack *3/2);
            
         }
-        PlayerHPSlider.value += healamount/2;
+        PlayerHPSlider.value += thisHero.healamount /2;
 
 
     }

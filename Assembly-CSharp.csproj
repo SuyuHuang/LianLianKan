@@ -86,11 +86,19 @@
     <Compile Include="Assets\Scripts\Manager\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\DisplayManager.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameSaveManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Manager\JudgeManager.cs" />
     <Compile Include="Assets\Scripts\Manager\MapManager.cs" />
     <Compile Include="Assets\Scripts\Manager\ToolManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\MyClass.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\Item.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\ItemOnSale.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\ScriptableEnemy.cs" />
+    <Compile Include="Assets\Scripts\Scriptable\ScriptableHero.cs" />
     <Compile Include="Assets\Scripts\Tools\CameraMove.cs" />
     <Compile Include="Assets\Scripts\Tools\TimeDecreaseTool.cs" />
     <Compile Include="Assets\Scripts\Tools\TimePlusTool.cs" />
@@ -128,6 +136,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Zero Rare\Retro Sound Effects\Demo\Demo.cs" />
+    <Compile Include="Assets\slot.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

@@ -9,6 +9,7 @@ TagManager:
   - floatPoint
   - maps
   - enemy
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7cca50a11e88d4eab5082fc92ab6bf, type: 3}
+  m_Name: thisHero
+  m_EditorClassIdentifier: 
+  attack: 0.02
+  healamount: 0.005
+  iscorrect: 0
+  darkpersist: 0
+  defend: 0
+  coinnumber: 830
+  HP: 0.9849975
+  EnemyHP: 0.946

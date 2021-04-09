@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
+    public static MapManager Instance;
     public static int RowNum = 10;
 
     public static int ColumNum = 10;
@@ -43,6 +44,15 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if(Instance!=this)
+        {
+            Destroy(this);
+        }
+        DontDestroyOnLoad(this);
        
             InitAllMap();
             InitTools();
@@ -151,7 +161,7 @@ public class MapManager : MonoBehaviour
     public void updateImage()
     {
         for (int i = 0; i < HeroPrefabs.Length-1; i++) {
-            PanelList[i].sprite = SpriteList[i];
+          
             animatorList[i] = nodeList[i].GetComponentInChildren<Animator>();
 
         }

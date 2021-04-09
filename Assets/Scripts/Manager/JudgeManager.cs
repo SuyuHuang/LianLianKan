@@ -95,7 +95,7 @@ namespace Scripts
                         if (IsLink(tempNode.Value.X, tempNode.Value.Y, tempNodeNext.Value.X, tempNodeNext.Value.Y))
                         {
                            
-                            Debug.Log("Game continues");
+                            /*Debug.Log("Game continues");*/
                             return false;
                         }
 

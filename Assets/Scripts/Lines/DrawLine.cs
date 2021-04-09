@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DrawLine : SingleTemplate<DrawLine>
 {
-    public AudioSource EliminatedAudio;
+    
     public Animator eliminated;
 
     /// <summary>
@@ -18,7 +18,7 @@ public class DrawLine : SingleTemplate<DrawLine>
     //创建三种线
     public void CreatLine()
     {
-        EliminatedAudio = GetComponent<AudioSource>();
+     
         GameObject line = new GameObject("line1");
         _line1 = line.AddComponent<LineRenderer>();
         SetLineWidthAndvertex(2, 0.1f, 0.1f, _line1);
@@ -50,7 +50,7 @@ public class DrawLine : SingleTemplate<DrawLine>
     /// <param name="z2">次选牌的坐标信息</param>
     public void DrawLinkLine(GameObject g1, GameObject g2, int linkType, Vector3 z1, Vector3 z2)
     {
-        EliminatedAudio.Play();
+    
         if (BattleManager.level != 0)
         {
            
