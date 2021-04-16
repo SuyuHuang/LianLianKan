@@ -12,7 +12,11 @@ public class ScriptableHero : ScriptableObject
     public  float defend;
     public  int coinnumber;
     public float HP;
+    public float maxHP;
     public float EnemyHP;
+    public bool level1Passed;
+    public bool level2Passed;
+
     // Start is called before the first frame update
 
 }

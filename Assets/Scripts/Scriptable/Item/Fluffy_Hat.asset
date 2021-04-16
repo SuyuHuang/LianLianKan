@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fluffy_Hat
   itemImage: {fileID: 21300000, guid: 6b679ae8dbaf56d4398cb5b93a0256e1, type: 3}
-  itemHeld: 0
+  itemHeld: 1
   itemInfo: Fine and functional foppery for the fashion-forward fighter.Health+ 125
-  equip: 0
+  equip: 1
   price: 250
   AttackBouns: 0
   DefendBouns: 0
   healingBouns: 0
+  itemHasEffect: 1
+  healthBouns: 125
+  id: 7

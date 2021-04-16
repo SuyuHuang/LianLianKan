@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868fa1c15be1148419e66366b8ad9366, type: 3}
   m_Name: Morbid_Mask
   m_EditorClassIdentifier: 
-  itemName: Morbid_Mask
-  itemImage: {fileID: 21300000, guid: 53966dfabe830ed4ab173c38d6c2ab6f, type: 3}
+  itemName: Monkey_King_Bar
+  itemImage: {fileID: 21300000, guid: 19f1083b161368446a0242e7bc1a428e, type: 3}
   itemHeld: 0
-  itemInfo: A mask that drains the energy of those caught in its gaze. Provides 15%
-    LifeSteal
+  itemInfo: "Monkey King Bar has a chance to pierce through evasion and deal bonus
+    damage. \n+40 Attack\n 75% pierce through evasion and deal 70 damage."
   equip: 0
-  price: 900
-  AttackBouns: 0
+  price: 4975
+  AttackBouns: 40
   DefendBouns: 0
   healingBouns: 0
+  itemHasEffect: 0
+  healthBouns: 0
+  id: 11

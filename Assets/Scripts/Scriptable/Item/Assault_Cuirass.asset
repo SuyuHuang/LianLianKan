@@ -19,6 +19,9 @@ MonoBehaviour:
     an army with increased armor and attack speed.+30 Defend
   equip: 0
   price: 5075
-  AttackBouns: 0
+  AttackBouns: 50
   DefendBouns: 30
   healingBouns: 0
+  itemHasEffect: 0
+  healthBouns: 0
+  id: 1

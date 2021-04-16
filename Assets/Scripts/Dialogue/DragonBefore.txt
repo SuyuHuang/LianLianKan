@@ -1,0 +1,16 @@
+PLAYER
+Where is there?
+Dragon
+Roar
+PLAYER
+Who are you?
+Dragon
+Roar
+PLAYER
+Who am I?
+Dragon
+Roar
+Dragon
+Attack
+PLAYER
+WHAT???

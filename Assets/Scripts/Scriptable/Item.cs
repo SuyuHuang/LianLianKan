@@ -15,6 +15,9 @@ public class Item : ScriptableObject
     public float AttackBouns;
     public float DefendBouns;
     public float healingBouns;
+    public bool itemHasEffect;
+    public float healthBouns;
+    public int id;
     // Start is called before the first frame update
   
 }

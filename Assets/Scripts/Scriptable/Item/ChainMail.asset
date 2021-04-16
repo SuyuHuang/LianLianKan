@@ -21,3 +21,6 @@ MonoBehaviour:
   AttackBouns: 0
   DefendBouns: 4
   healingBouns: 0
+  itemHasEffect: 0
+  healthBouns: 0
+  id: 3

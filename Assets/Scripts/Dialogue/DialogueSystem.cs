@@ -12,7 +12,8 @@ public class DialogueSystem : MonoBehaviour
     public TMP_Text textLabel;
     public Text nameLabel;
     public Image faceImage;
- 
+    public ScriptableHero thisHero;
+
 
 
     [Header("File")]
@@ -22,6 +23,10 @@ public class DialogueSystem : MonoBehaviour
 
     [Header("Image")]
     public Sprite face01, face02;
+
+
+    [Header("Sound")]
+    public AudioSource dragonRoar;
 
 
 
@@ -35,6 +40,7 @@ public class DialogueSystem : MonoBehaviour
     {
 
         GetTextFromFile(textFile);
+        
     
 
     }
@@ -49,11 +55,14 @@ public class DialogueSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TransferToNextScene();
+     /*   if(!thisHero.level1Passed)*/
+       /* TransferToNextScene();*/
+     
         if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
         {
             gameObject.SetActive(false);
             index = 0;
+            dialogueFinished = true;
             return;
         }
         /*if (Input.GetKeyDown(KeyCode.R)&&textFinished)
@@ -91,34 +100,62 @@ public class DialogueSystem : MonoBehaviour
     }
     void TransferToNextScene()
     {
-        if (dialogueFinished)
+        if (thisHero.level1Passed == false)
         {
+            if (dialogueFinished)
+            {
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-            dialogueFinished = false;
+                dialogueFinished = false;
+            }
         }
+       
     }
     IEnumerator SetTextUI()
     {
         textFinished = false;
         textLabel.text = "";
-        switch (textList[index])
+        if (thisHero.level1Passed == false)
         {
-            case "PLAYER\r":
-                nameLabel.text = "Player";
-                faceImage.sprite = face01;
-                index++;
-                break;
-            case "SHOPPER\r":
-                nameLabel.text = "Shopper";
-                faceImage.sprite = face02;
-                index++;
-                break;
+            switch (textList[index])
+            {
+                case "PLAYER\r":
+                    nameLabel.text = "Player";
+                    faceImage.sprite = face01;
+                    index++;
+                    break;
+                case "SHOPPER\r":
+                    nameLabel.text = "Shopper";
+                    faceImage.sprite = face02;
+                    index++;
+                    break;
 
 
 
 
+            }
+        }
+        else
+        {
+            switch (textList[index])
+            {
+                case "PLAYER\r":
+                    nameLabel.text = "Player";
+                    faceImage.sprite = face01;
+                    index++;
+                    break;
+                case "Dragon\r":
+                    dragonRoar.Play();
+                    nameLabel.text = "Dragon";
+                    faceImage.sprite = face02;
+                    index++;
+                    break;
+
+
+
+
+            }
         }
         int letter = 0;
         while (!cancelTyping && letter < textList[index].Length - 1)
@@ -144,9 +181,10 @@ public class DialogueSystem : MonoBehaviour
 
         textFinished = true;
         index++;
-     
        
-        
-    }
+
+
+
+        }
 }
 

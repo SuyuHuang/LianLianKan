@@ -19,6 +19,7 @@ public class ItemOnSale : MonoBehaviour
     public static bool coinChanged;
     public ScriptableHero thisHero;
 
+
     private void Awake()
     {
         itemPrice =GetComponentInChildren<TMP_Text>();
@@ -26,7 +27,9 @@ public class ItemOnSale : MonoBehaviour
     }
     private void Update()
     {
+
         hideDialogue();
+   
 
         /*if (Input.GetMouseButtonDown(0))
         {
@@ -40,18 +43,76 @@ public class ItemOnSale : MonoBehaviour
                     AddNewItem();
                     Destroy(gameObject);
                *//* }*/
-               /* else
-                {
-                    Debug.Log(hit.transform.gameObject.tag);
-                }*//*
-            }
-        }*/
+        /* else
+         {
+             Debug.Log(hit.transform.gameObject.tag);
+         }*//*
+     }
+ }*/
 
     }
     private void Start()
     {
         invokeTime = currentTime;
         
+    }
+    public void itemEquip()
+    {
+        if (thisItem.equip == true)
+        {
+  
+
+            if (thisItem.itemHasEffect == false)
+            {
+
+                thisHero.defend += thisHero.defend * (thisItem.DefendBouns / 100);
+                thisHero.attack += thisHero.attack * (thisItem.AttackBouns / 100);
+                switch (thisItem.id)
+                {
+                    case 1:
+                        
+                        break;
+                    case 2:
+                        
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+                        thisHero.HP += thisItem.healingBouns/100;
+                        BaseHero.updateHP = true;
+                        break;
+                    case 5:
+                        BaseHero.canCriticalStrike = true;
+                        break;
+                    case 7:
+                        BaseHero.maxHPChangedNumber = thisItem.healthBouns / 1000;
+                        BaseHero.maxHPChanged = true;
+                        break;
+                    case 8:
+                        thisHero.HP += thisItem.healingBouns / 1000;
+                        BaseHero.updateHP = true;
+                        break;
+                    case 9:
+                        BaseHero.maxHPChangedNumber = thisItem.healthBouns / 1000;
+                        BaseHero.maxHPChanged = true;
+                        thisHero.healamount = thisHero.healamount * 2;
+                        break;
+                    case 10:
+                        BaseHero.canLifeSteal = true;
+                        BaseHero.lifestealRate = 0.2f;
+                        break;
+                    case 11:
+                        BaseHero.monkeyKingBarEquipped = true;
+                        break;
+                    case 12:
+                        thisHero.HP += thisItem.healingBouns / 1000;
+                        BaseHero.updateHP = true;
+                        break;
+                }
+                thisItem.itemHasEffect = true;
+            }
+        }
     }
     public void itemClicked()
     {
@@ -67,11 +128,6 @@ public class ItemOnSale : MonoBehaviour
             {
                 EnterDialog.SetActive(true);
                 dialogueShow = true;
-               
-
-
-
-
 
             }
             else
@@ -79,7 +135,8 @@ public class ItemOnSale : MonoBehaviour
                 thisHero.coinnumber -= thisItem.price;
                 coinChanged = true;
                 thisItem.equip = true;
-                
+                itemEquip();
+
                 AddNewItem();
                 Destroy(gameObject);
             }

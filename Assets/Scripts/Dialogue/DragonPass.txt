@@ -1,0 +1,28 @@
+Dragon
+Roar
+Dragon
+I mean stop fighting,
+PLAYER
+What??? You can talk??
+Dragon
+Sure, I am just too lazy to talk to you.
+PLAYER
+So,why am I here and what instruct you to attack me?
+Dragon
+It's the Roshan King. Our King told me to beat you.
+PLAYER
+Is there any more information about the Roshan?
+Dragon
+He has any attributes but mercy.
+Dragon
+I would advise you to leave him alone.
+Dragon
+It is said that he has the power of rebirth.
+PLAYER
+Rebirth?
+Dragon
+Yeah, he can also cast some destructive ability.
+Dragon
+That's all what I know. I am leaving for freedom now.
+PLAYER
+Wait?

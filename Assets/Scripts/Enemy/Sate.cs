@@ -1,6 +1,7 @@
 ﻿using Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,11 @@ public class Sate : Enemy
     public static float countime;
     public  GameObject floatPoint;
     public ScriptableHero thisHero;
+    public TMP_Text nextAction;
 
 
     public float attack = 0.02f;
-    public float healAmount = 0.02f;
+     float healAmount = 0.05f;
     public GameObject Maps;
     public float hideTime;
     public Slider EnemyHPSlider;
@@ -46,19 +48,28 @@ public class Sate : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-       thisHero.EnemyHP= EnemyHPSlider.value ;
+        if (DialogueSystem.dialogueFinished == false)
+        {
+            thisHero.HP = thisHero.maxHP;
+            PlayerHPSlider.value = thisHero.maxHP;
+        }
+        else
+        {
+            thisHero.EnemyHP = EnemyHPSlider.value;
 
 
-        SwitchAnim();
-       
+            SwitchAnim();
 
 
 
 
-        countime = Time.time;
 
-        SwitchAction(countime % 6);
-     
+            countime = Time.time;
+
+            SwitchAction(countime % 6);
+
+        }
+
 
     }
     public  void SwitchAnim()
@@ -79,21 +90,26 @@ public class Sate : Enemy
         {
             case 0:
                 Attack();
+                nextAction.text = "Attack";
               
                 break;
             case 1:
                 /*Defend();*/
+                nextAction.text = "Defend";
                 break;
             case 2:
+                nextAction.text = "HideMap";
                 HideMap();
                 break;
             case 3:
                 ShowMap();
                 break;
             case 4:
+                nextAction.text = "Heal";
                 Heal();
                 break;
             case 5:
+                nextAction.text = "Heal and Damage";
                 HealandDamage();
                 break;
 
@@ -115,10 +131,7 @@ public class Sate : Enemy
     {
         EnemyHPSlider.value += healAmount;
     }
-    public void Defend()
-    {
-        base.Defend();
-    }
+    
     public void HealandDamage()
     {
         PlayerHPSlider.value -= attack/2;

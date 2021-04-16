@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using Scripts;
 using Scripts.Base;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : SingleTemplate<Timer>
 {
+	public TMP_Text remainingHP;
 
 	private Slider _slider;
 
@@ -31,6 +33,10 @@ public class Timer : SingleTemplate<Timer>
 	{
 		_slider = GetComponent<Slider>();
 	}
+	public void UpdateHP()
+    {
+		remainingHP.text = (int)(_slider.value * 100)+"";
+    }
 
 	private void Update()
 	{
@@ -52,5 +58,6 @@ public class Timer : SingleTemplate<Timer>
 
 			}
 		}
+		UpdateHP();
 	}
 }

@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using Scripts;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,45 +10,83 @@ public class Dragon : Enemy
 {
     protected static Animator Anim;
     public static bool isHurt = false;
-    public static bool isNormal = true;
+    public static bool isnormal = true;
     public static float countime;
+    public GameObject floatPoint;
+    public ScriptableHero thisHero;
+    public TMP_Text nextAction;
+    public AudioSource dragonFire;
+    public AudioSource dragonRoar;
+    public float currentTime = 2f;
+    public Camera mainCanera;
+    public float maxHP = 1.5f;
    
+    // 弹幕计时
+    private float invokeTime;
+
+
     public float attack = 0.02f;
-    public float healAmount = 0.02f;
-    public static Transform transform;
+    float healAmount = 0.05f;
 
     public float hideTime;
     public Slider EnemyHPSlider;
     public Slider PlayerHPSlider;
 
+
+
+
+
+
+
+
     // Start is called before the first frame update
     new void Start()
     {
-        base.Start();
+        
+        invokeTime = currentTime;
+
+        /*        floatPoint = GameObject.FindGameObjectWithTag("floatPoint");*/
         PlayerHPSlider = GameObject.FindGameObjectWithTag("playerTimer").GetComponent<Slider>();
         EnemyHPSlider = GameObject.FindGameObjectWithTag("enemyTimer").GetComponent<Slider>();
         Anim = GetComponent<Animator>();
-        transform = GetComponent<Transform>();
+
+        EnemyHPSlider.value = thisHero.EnemyHP;
     }
     new private void Awake()
     {
-        base.Awake();
+     
+        EnemyHPSlider.maxValue = maxHP;
+        EnemyHPSlider.value = thisHero.EnemyHP;
+ 
+        PlayerHPSlider.value = thisHero.HP;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
+        thisHero.EnemyHP = EnemyHPSlider.value;
+        if (DialogueSystem.dialogueFinished == false)
+        {
+            thisHero.HP = thisHero.maxHP;
+            PlayerHPSlider.value = thisHero.maxHP;
+        }
+        else
+        {
 
-        SwitchAnim();
+            SwitchAnim();
 
 
 
 
 
-        countime = Time.time;
+            countime = Time.time;
 
-        SwitchAction(countime % 6);
+            SwitchAction(countime % 6);
+        }
+       
+
+
 
 
     }
@@ -53,18 +94,13 @@ public class Dragon : Enemy
     {
         if (isHurt)
         {
-            Anim.SetBool("Hurt", true);
+            Anim.SetBool("IsAttacked", true);
             isHurt = false;
         }
         else
         {
-            Anim.SetBool("Hurt", false);
+            Anim.SetBool("IsAttacked", false);
         }
-      
-    }
-    public  void takeDamage(double damage)
-    {
-     /*   Instantiate(floatPoint, transform.position, Quaternion.identity);*/
     }
     public void SwitchAction(float changedtime)
     {
@@ -72,22 +108,29 @@ public class Dragon : Enemy
         {
             case 0:
                 Attack();
+                nextAction.text = "Attack";
+
 
                 break;
             case 1:
                 /*Defend();*/
                 Anim.SetBool("Attack", false);
+                nextAction.text = "Defend";
                 break;
             case 2:
                 Fire();
+                nextAction.text = "Fire";
                 break;
             case 3:
                 Anim.SetBool("Fire", false);
                 break;
             case 4:
+               
+                nextAction.text = "Heal";
                 Heal();
                 break;
             case 5:
+                nextAction.text = "Heal and Damage";
                 HealandDamage();
                 break;
 
@@ -95,48 +138,92 @@ public class Dragon : Enemy
 
         }
     }
-    public void Attack()
+
+    private void Fire()
     {
-        PlayerHPSlider.value -= attack;
-        Anim.SetBool("Attack", true);
-       
-    }
-    public void Heal()
-    {
-        EnemyHPSlider.value += healAmount;
-    }
-    public void Defend()
-    {
-        base.Defend();
-    }
-    public void HealandDamage()
-    {
-        PlayerHPSlider.value -= attack / 2;
-        EnemyHPSlider.value += healAmount / 2;
-    }
-    public void Fire()
-    {
+        StartCoroutine(ChangeColor());
+        StartCoroutine(TakeDamage(0.5f, 4));
+        invokeTime += Time.deltaTime;
+
+        dragonRoar.Play();
+        dragonFire.Play();
         Anim.SetBool("Fire", true);
-        TakeDamage(1, 5);
+    }
+
+    IEnumerator ChangeColor()
+    {
+        mainCanera.backgroundColor = Color.red;
+        yield return new WaitForEndOfFrame();
+
+        for (int i = 0; i < 50; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(2f);
+        mainCanera.backgroundColor = Color.black;
 
     }
+
     IEnumerator TakeDamage(float timeOff, int count)
     {
         for (int i = 0; i < count; i++)
         {
             yield return new WaitForSeconds(timeOff);
-            PlayerHPSlider.value -= attack/3;
+            PlayerHPSlider.value -= attack / 2;
         }
     }
 
+
+
+        public void Attack()
+    {
+        Anim.SetBool("Attack", true);
+        PlayerHPSlider.value -= attack;
+    }
+    public void takeDamage(double damage)
+    {
+
+        GameObject gb = Instantiate(floatPoint, new Vector3(-8, 8, 0), Quaternion.identity) as GameObject;
+        gb.transform.GetComponent<TextMesh>().text = ((int)(damage * 1200)).ToString();
+    }
+    public void Heal()
+    {
+        EnemyHPSlider.value += healAmount;
+    }
+
+    public void HealandDamage()
+    {
+        PlayerHPSlider.value -= attack / 2;
+        EnemyHPSlider.value += healAmount / 2;
+    }
+    public void HideMap()
+    {
+        if (thisHero.darkpersist)
+        {
+            thisHero.darkpersist = false;
+        }
+        else
+        {
+            if (!GameManager.IsPause)
+         
+            hideTime = 2f;
+        }
+    }
     public void ShowMap()
     {
-    
+        if (!GameManager.IsPause)
+ 
         hideTime = 2f;
 
     }
-    void backtoNormal()
+
+    public void backtoNormal()
     {
         Anim.SetBool("IsAttacked", false);
+    }
+    public void saySomething()
+    {
+        Debug.Log("something");
     }
 }

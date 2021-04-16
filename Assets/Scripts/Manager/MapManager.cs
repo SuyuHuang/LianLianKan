@@ -44,7 +44,7 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+       /* if (Instance == null)
         {
             Instance = this;
         }
@@ -52,7 +52,7 @@ public class MapManager : MonoBehaviour
         {
             Destroy(this);
         }
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);*/
        
             InitAllMap();
             InitTools();

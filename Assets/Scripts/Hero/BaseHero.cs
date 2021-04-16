@@ -11,6 +11,14 @@ public class BaseHero : MonoBehaviour
     public   Slider EnemyHPSlider;
     public  Slider PlayerHPSlider;
     public static bool iscorrect = false;
+    public static bool maxHPChanged;
+    public static float maxHPChangedNumber;
+    public static bool updateHP;
+    public static bool canCriticalStrike;
+    public static bool criticalStrike;
+    public static bool canLifeSteal;
+    public static bool monkeyKingBarEquipped;
+    public static float lifestealRate;
 
     bool isOpen;
     public GameObject myBag;
@@ -35,12 +43,32 @@ public class BaseHero : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        thisHero.HP = PlayerHPSlider.value;
+        if (updateHP == false)
+        {
+            thisHero.HP = PlayerHPSlider.value;
+        }
+        else
+        {
+            if (thisHero.HP < PlayerHPSlider.maxValue)
+            {
+                PlayerHPSlider.value = thisHero.HP;
+                updateHP = false;
+            }
+            else
+            {
+                thisHero.HP = PlayerHPSlider.maxValue;
+                PlayerHPSlider.value = PlayerHPSlider.maxValue;
+                updateHP = false;
+            }
+        }
         OpenMyBag();
         UpdateCoinNumber();
-
+        ImproveMaxHP();
 
     }
+
+
+   
    
 
     public  void UpdateCoinNumber()
@@ -67,6 +95,15 @@ public class BaseHero : MonoBehaviour
         EnemyHPSlider = EnemyHPSlider1;
         if (iscorrect)
         {
+            if (canCriticalStrike)
+            {
+                int number = (int)Random.Range(0, 100);
+                if (0 < number &&number< 30)
+                {
+                    thisHero.attack = thisHero.attack * 2.5f;
+                    criticalStrike = true;
+                }
+            }
             BaseDamage();
             GetCoin();
        
@@ -92,6 +129,11 @@ public class BaseHero : MonoBehaviour
             }
         }
         iscorrect = false;
+        if (criticalStrike)
+        {
+            thisHero.attack = thisHero.attack / 2.5f;
+            criticalStrike = false;
+        }
     }
     public  void Luna()
     {
@@ -129,6 +171,17 @@ public class BaseHero : MonoBehaviour
             causeDamage(thisHero.attack *2);
         }
     }
+    public void ImproveMaxHP()
+    {
+       float changedNumber = maxHPChangedNumber;
+        if (maxHPChanged)
+        {
+            PlayerHPSlider.maxValue += PlayerHPSlider.maxValue*changedNumber;
+            thisHero.maxHP = PlayerHPSlider.maxValue;
+            PlayerHPSlider.value += PlayerHPSlider.value*changedNumber;
+            maxHPChanged = false;
+        }
+    }
     public  void BaseDamage()
     {
         if (Enemy.immutablecount > 0)
@@ -144,6 +197,14 @@ public class BaseHero : MonoBehaviour
         {
            
             GameManager.IsEnemyKilled = true;
+        }
+        if (canLifeSteal == true)
+        {
+            PlayerHPSlider.value += thisHero.attack * lifestealRate;
+        }
+        if (monkeyKingBarEquipped)
+        {
+            causeDamage(0.024f);
         }
     }
     public  void Knight()
@@ -162,6 +223,7 @@ public class BaseHero : MonoBehaviour
             
             
             causeDamage(thisHero.attack * 2);
+       
         }
         else
         {
@@ -171,16 +233,24 @@ public class BaseHero : MonoBehaviour
     }
     public void causeDamage(float damage)
     {
+        if (canLifeSteal == true)
+        {
+            PlayerHPSlider.value += damage * lifestealRate;
+        }
         EnemyHPSlider.value -= damage;
  
-        Dragon dragon = new Dragon();
+   
         if (BattleManager.level == 1)
         {
             GameObject.FindGameObjectWithTag("enemy").GetComponent<Sate>().takeDamage(damage);
         }
         else if (BattleManager.level == 2)
         {
-            dragon.takeDamage(damage);
+            GameObject.FindGameObjectWithTag("enemy").GetComponent<Dragon>().takeDamage(damage);
+        }
+        else if (BattleManager.level == 3)
+        {
+            GameObject.FindGameObjectWithTag("enemy").GetComponent<Roshan>().takeDamage(damage);
         }
 
     }

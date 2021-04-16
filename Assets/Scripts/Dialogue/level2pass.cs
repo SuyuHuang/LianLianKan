@@ -1,14 +1,16 @@
 ﻿using Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class level2pass : MonoBehaviour
 {
+    public ScriptableHero thisHero;
     [Header("UI")]
-    public Text textLabel;
+    public TMP_Text textLabel;
     public Text nameLabel;
     public Image faceImage;
     public Camera camera1;
@@ -48,11 +50,22 @@ public class level2pass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TransferToNextScene();
+       /* TransferToNextScene();*/
         if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
         {
             gameObject.SetActive(false);
             index = 0;
+            dialogueFinished = true;
+            thisHero.level1Passed = true;
+            thisHero.EnemyHP = 1.5f;
+            thisHero.HP = thisHero.maxHP;
+            if (thisHero.level1Passed ==true)
+            {
+                thisHero.level2Passed = true;
+            }
+            BattleManager.level += 1;
+            GameManager.IsEnemyKilled = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             return;
         }
         /*if (Input.GetKeyDown(KeyCode.R)&&textFinished)
@@ -77,8 +90,7 @@ public class level2pass : MonoBehaviour
     void toNextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        BattleManager.level += 1;
-        GameManager.IsEnemyKilled = false;
+      
     }
 
     void GetTextFromFile(TextAsset file)
@@ -110,22 +122,45 @@ public class level2pass : MonoBehaviour
     {
         textFinished = false;
         textLabel.text = "";
-        switch (textList[index])
+        if (thisHero.level1Passed == false)
         {
-            case "PLAYER\r":
-                nameLabel.text = "Player";
-                faceImage.sprite = face01;
-                index++;
-                break;
-            case "Sate\r":
-                nameLabel.text = "Sate";
-                faceImage.sprite = face02;
-                index++;
-                break;
+            switch (textList[index])
+            {
+                case "PLAYER\r":
+                    nameLabel.text = "Player";
+                    faceImage.sprite = face01;
+                    index++;
+                    break;
+                case "Sate\r":
+                    nameLabel.text = "Sate";
+                    faceImage.sprite = face02;
+                    index++;
+                    break;
 
 
 
 
+            }
+        }
+        else
+        {
+            switch (textList[index])
+            {
+                case "PLAYER\r":
+                    nameLabel.text = "Player";
+                    faceImage.sprite = face01;
+                    index++;
+                    break;
+                case "Dragon\r":
+                    nameLabel.text = "Dragon";
+                    faceImage.sprite = face02;
+                    index++;
+                    break;
+
+
+
+
+            }
         }
         int letter = 0;
         while (!cancelTyping && letter < textList[index].Length - 1)
@@ -157,19 +192,10 @@ public class level2pass : MonoBehaviour
         }
        
        
-        {
-            if (GameManager.IsFinished)
-            {
-                index++;
-            }
-        }
-        if (index == textList.Count)
-        {
-            dialogueFinished = true;
-            toNextLevel();
-            
-        }
+    
+      
         index++;
+       
 
 
 

@@ -95,6 +95,10 @@ public class JudgeLink : Judge
                 {
                     Dragon.isHurt = true;
                 }
+                else if (BattleManager.level == 3)
+                {
+                    Roshan.isHurt = true;
+                }
                 
                 MapManager.value = Value1;
                 MapManager.isactive = true;

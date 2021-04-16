@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cheese
   itemImage: {fileID: 21300000, guid: 974048f560169584aa3b3f4fddd241ff, type: 3}
-  itemHeld: 0
+  itemHeld: 1
   itemInfo: Made from the milk of a long lost Furbolg vendor, it restores the vitality
-    of those who taste it. Restores 2500HP
+    of those who taste it. Restores 100HP
   equip: 0
   price: 1000
   AttackBouns: 0
   DefendBouns: 0
-  healingBouns: 0
+  healingBouns: 1000
+  itemHasEffect: 0
+  healthBouns: 0
+  id: 4

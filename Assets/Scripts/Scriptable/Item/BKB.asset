@@ -15,10 +15,13 @@ MonoBehaviour:
   itemName: BKB
   itemImage: {fileID: 21300000, guid: ff7b2fe337dd4a942bdaabb478b4abd4, type: 3}
   itemHeld: 3
-  itemInfo: A powerful staff imbued with the strength of giants. +10 Attack and 50
-    defend
+  itemInfo: A powerful staff imbued with the strength of giants. +10 Attack ,50 defend
+    and 20% Max health.
   equip: 0
   price: 4050
   AttackBouns: 10
   DefendBouns: 50
   healingBouns: 0
+  itemHasEffect: 0
+  healthBouns: 20
+  id: 2
