@@ -18,7 +18,7 @@ MonoBehaviour:
   darkpersist: 1
   defend: 0.1952288
   coinnumber: 185863
-  HP: 0.48535624
+  HP: 1
   maxHP: 1
   EnemyHP: 1.2661992
   level1Passed: 0

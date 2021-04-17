@@ -1,6 +1,8 @@
-﻿using Scripts;
+﻿
+using Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +10,8 @@ using UnityEngine.UI;
 public class Level1Dialogue : MonoBehaviour
 {
     [Header("UI")]
-    public Text textLabel;
+
+    public TMP_Text textLabel;
     public Text nameLabel;
     public Image faceImage;
     public GameObject Maps;
@@ -92,9 +95,9 @@ public class Level1Dialogue : MonoBehaviour
     {
         if (dialogueFinished)
         {
-           
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            
+
             dialogueFinished = false;
         }
     }
@@ -123,7 +126,7 @@ public class Level1Dialogue : MonoBehaviour
         while (!cancelTyping && letter < textList[index].Length - 1)
         {
 
-           
+
             textLabel.text += textList[index][letter];
             letter++;
             yield return new WaitForSeconds(textSpeed);
@@ -149,12 +152,12 @@ public class Level1Dialogue : MonoBehaviour
 
 
         textFinished = true;
-        if (index == 7||index==21)
+        if (index == 7 || index == 21)
         {
             camera1.GetComponent<ShakeCamera>().enabled = true;
 
         }
-        if (index != 45)
+        if (index != 55)
         {
             index++;
         }
@@ -172,4 +175,3 @@ public class Level1Dialogue : MonoBehaviour
         }
     }
 }
-

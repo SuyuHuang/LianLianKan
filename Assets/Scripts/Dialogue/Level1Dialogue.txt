@@ -43,8 +43,32 @@ And if you eliminate the bricks, it will increase.
 SHOPPER
 Some hero bricks have the ability to recover time as well.
 SHOPPER
+For example, clinkz has the ability to cause huge damage,it is the one with fire.
+SHOPPER
+And Luna,the blue one has the ability to avoid the hidemap skills of sate.
+SHOPPER
+Knight can recover you time largely.
+SHOPPER
+The last green one PAGNA can attack enemy and heal you at the same time.
+SHOPPER
+On bricks clicked, you time will be recovered and coin will be added.
+SHOPPER
 Eliminate all the bricks. Remember less than 3 corners.
 SHOPPER
 Now that you have eliminated all
-
-
+SHOPPER
+You have collected some money to buy items
+PLAYER
+What item
+SHOPPER
+A various of items, to improve attack, defend or just healing
+SHOPPER
+You can click the money icon the visit the shop
+SHOPPER
+First click is to view the item information
+SHOPPER
+But the scond click is to buy things
+SHOPPER
+You can cilck B to view the bag.
+SHOPPER
+So, let's enter the real dota world.

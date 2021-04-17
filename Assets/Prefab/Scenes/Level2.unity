@@ -5768,6 +5768,7 @@ MonoBehaviour:
   dragonRoar: {fileID: 0}
   currentTime: 2
   mainCanera: {fileID: 0}
+  maxHP: 1.5
   attack: 0.02
   hideTime: 0
   EnemyHPSlider: {fileID: 849898724}
@@ -13203,6 +13204,7 @@ MonoBehaviour:
   dragonRoar: {fileID: 1524197434}
   currentTime: 2
   mainCanera: {fileID: 408615702}
+  maxHP: 1.5
   attack: 0.02
   hideTime: 0
   EnemyHPSlider: {fileID: 2097467875}
@@ -13502,7 +13504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.8, y: 203.94}
+  m_AnchoredPosition: {x: -42, y: 386}
   m_SizeDelta: {x: 293.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1563665950
