@@ -15,11 +15,12 @@ public class Roshan : Enemy
     public GameObject floatPoint;
     public ScriptableHero thisHero;
     public TMP_Text nextAction;
-    public AudioSource dragonFire;
-    public AudioSource dragonRoar;
+/*    public AudioSource dragonFire;
+    public AudioSource dragonRoar;*/
     public float currentTime = 2f;
     public Camera mainCanera;
-    public float maxHP = 2f;
+    public static float maxHP = 2f;
+    public static bool canReburn ;
 
     // 弹幕计时
     private float invokeTime;
@@ -42,7 +43,7 @@ public class Roshan : Enemy
     // Start is called before the first frame update
     new void Start()
     {
-
+        canReburn = true;
         invokeTime = currentTime;
 
         /*        floatPoint = GameObject.FindGameObjectWithTag("floatPoint");*/
@@ -64,6 +65,11 @@ public class Roshan : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (!canReburn)
+        {
+            Debug.Log("aaa");
+        }
         thisHero.EnemyHP = EnemyHPSlider.value;
         if (DialogueSystem.dialogueFinished == false)
         {
@@ -72,16 +78,19 @@ public class Roshan : Enemy
         }
         else
         {
+            if (!GameManager.IsOver)
+            {
 
-            SwitchAnim();
+                SwitchAnim();
 
 
 
 
 
-            countime = Time.time;
+                countime = Time.time;
 
-            SwitchAction(countime % 6);
+                SwitchAction(countime % 6);
+            }
         }
 
 
@@ -144,10 +153,10 @@ public class Roshan : Enemy
     private void CastSkills()
     {
 
-        PlayerHPSlider.value -= attack*5;
+        PlayerHPSlider.value -= attack*5-attack*thisHero.defend*5;
 
-        dragonRoar.Play();
-        dragonFire.Play();
+/*        dragonRoar.Play();
+        dragonFire.Play();*/
         Anim.SetBool("CastSkills", true);
     }
 
@@ -180,7 +189,7 @@ public class Roshan : Enemy
     public void Attack()
     {
         Anim.SetBool("Attack", true);
-        PlayerHPSlider.value -= attack;
+        PlayerHPSlider.value -= attack-attack * thisHero.defend;
     }
     public void takeDamage(double damage)
     {
@@ -217,6 +226,10 @@ public class Roshan : Enemy
 
             hideTime = 2f;
 
+    }
+    public float getMaxHP()
+    {
+        return maxHP;
     }
 
     public void backtoNormal()

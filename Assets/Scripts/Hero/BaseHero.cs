@@ -168,7 +168,7 @@ public class BaseHero : MonoBehaviour
         }
         else
         {
-            causeDamage(thisHero.attack *2);
+            causeDamage(thisHero.attack *1.35f);
         }
     }
     public void ImproveMaxHP()

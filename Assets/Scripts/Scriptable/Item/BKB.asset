@@ -16,7 +16,6 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: ff7b2fe337dd4a942bdaabb478b4abd4, type: 3}
   itemHeld: 3
   itemInfo: A powerful staff imbued with the strength of giants. +10 Attack ,50 defend
-    and 20% Max health.
   equip: 0
   price: 4050
   AttackBouns: 10

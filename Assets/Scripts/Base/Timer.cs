@@ -42,7 +42,7 @@ public class Timer : SingleTemplate<Timer>
 	{
 		if (BattleManager.level != 0)
 		{
-			if ((GameManager.IsPause == false) && (GameManager.IsOver == false))
+			if ((GameManager.IsPause == false) && (GameManager.IsOver == false)&&!GameManager.IsEnemyKilled)
 			{
 				_slider.value -= 0.0001f;
 

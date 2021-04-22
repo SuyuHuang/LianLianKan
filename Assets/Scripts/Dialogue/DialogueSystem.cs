@@ -136,7 +136,7 @@ public class DialogueSystem : MonoBehaviour
 
             }
         }
-        else
+        else if(thisHero.level1Passed == true&&thisHero.level2Passed==false)
         {
             switch (textList[index])
             {
@@ -157,7 +157,29 @@ public class DialogueSystem : MonoBehaviour
 
             }
         }
-        int letter = 0;
+        else if (thisHero.level1Passed == true && thisHero.level2Passed == true)
+        {
+            switch (textList[index])
+            {
+                case "PLAYER\r":
+                    nameLabel.text = "Player";
+                    faceImage.sprite = face01;
+                    index++;
+                    break;
+                case "Roshan\r":
+                /*    dragonRoar.Play();*/
+                    nameLabel.text = "Roshan";
+                    faceImage.sprite = face02;
+                    index++;
+                    break;
+
+
+
+
+            }
+        }
+
+            int letter = 0;
         while (!cancelTyping && letter < textList[index].Length - 1)
         {
 

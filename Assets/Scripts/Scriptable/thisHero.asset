@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7cca50a11e88d4eab5082fc92ab6bf, type: 3}
   m_Name: thisHero
   m_EditorClassIdentifier: 
-  attack: 0.0288
+  attack: 0.4512
   healamount: 0.005
   iscorrect: 0
-  darkpersist: 1
-  defend: 0.1952288
-  coinnumber: 185863
-  HP: 1
+  darkpersist: 0
+  defend: 0.25379744
+  coinnumber: 32580
+  HP: 0.87020636
   maxHP: 1
-  EnemyHP: 1.2661992
-  level1Passed: 0
-  level2Passed: 0
+  EnemyHP: 0.075
+  level1Passed: 1
+  level2Passed: 1

@@ -25,7 +25,7 @@ public class Dragon : Enemy
     private float invokeTime;
 
 
-    public float attack = 0.02f;
+    public float attack = 0.03f;
     float healAmount = 0.05f;
 
     public float hideTime;
@@ -170,7 +170,7 @@ public class Dragon : Enemy
         for (int i = 0; i < count; i++)
         {
             yield return new WaitForSeconds(timeOff);
-            PlayerHPSlider.value -= attack / 2;
+            PlayerHPSlider.value -= attack / 2 - attack * thisHero.defend/2;
         }
     }
 
@@ -179,7 +179,7 @@ public class Dragon : Enemy
         public void Attack()
     {
         Anim.SetBool("Attack", true);
-        PlayerHPSlider.value -= attack;
+        PlayerHPSlider.value -= attack - attack * thisHero.defend;
     }
     public void takeDamage(double damage)
     {

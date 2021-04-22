@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Prefab/Scenes/Roshan.unity
+- path: Assets/Prefab/Scenes/LianLianKan.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

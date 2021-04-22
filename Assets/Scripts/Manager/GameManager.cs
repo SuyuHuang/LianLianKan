@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Scripts
 {
@@ -10,8 +11,10 @@ namespace Scripts
         public static bool IsEnemyKilled = false;
         public static bool IsFinished = false;
         public GameObject level2Pass;
-        
-      
+        public ScriptableHero thisHero;
+        public Slider EnemyHPSlider;
+
+
 
 
         /// <summary>
@@ -29,15 +32,27 @@ namespace Scripts
                 }
                 if (IsEnemyKilled)
                 {
-                    if (level2pass.dialogueFinished == false)
+                    if (BattleManager.level == 3 && Roshan.canReburn == true)
                     {
-                        level2Pass.SetActive(true);
-                    }
-                    else {
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                        BattleManager.level += 1;
+                        thisHero.EnemyHP = Roshan.maxHP;
+                        EnemyHPSlider.value = Roshan.maxHP;
+                        Roshan.canReburn = false;
                         IsEnemyKilled = false;
-                    } 
+                        
+                    }
+                    else
+                    {
+                        if (level2pass.dialogueFinished == false)
+                        {
+                            level2Pass.SetActive(true);
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                            BattleManager.level += 1;
+                            IsEnemyKilled = false;
+                        }
+                    }
                 }
             }
             else

@@ -28,7 +28,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+    
         if (level != 0)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<BaseHero>().Level1Battle(PlayerHPSlider,EnemyHPSlider);

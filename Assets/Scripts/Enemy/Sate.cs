@@ -119,7 +119,7 @@ public class Sate : Enemy
     }
     public  void Attack()
     {
-        PlayerHPSlider.value -= attack;
+        PlayerHPSlider.value -= attack - attack * thisHero.defend;
     }
     public  void takeDamage(double damage)
     {
@@ -134,7 +134,7 @@ public class Sate : Enemy
     
     public void HealandDamage()
     {
-        PlayerHPSlider.value -= attack/2;
+        PlayerHPSlider.value -= attack/2 - attack * thisHero.defend/2;
         EnemyHPSlider.value += healAmount/2;
     }
     public void HideMap()

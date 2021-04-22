@@ -29,18 +29,19 @@ public class level2pass : MonoBehaviour
 
     bool textFinished;
     bool cancelTyping;
-    public static bool dialogueFinished = false;
+    public static bool dialogueFinished ;
     List<string> textList = new List<string>();
     // Start is called before the first frame update
     void Awake()
     {
-
+        
         GetTextFromFile(textFile);
 
 
     }
     private void OnEnable()
     {
+       
         textFinished = true;
         StartCoroutine(SetTextUI());
         /*    textLabel.text = textList[index];
@@ -50,21 +51,25 @@ public class level2pass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
        /* TransferToNextScene();*/
         if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
         {
             gameObject.SetActive(false);
             index = 0;
             dialogueFinished = true;
-            thisHero.level1Passed = true;
-            thisHero.EnemyHP = 1.5f;
-            thisHero.HP = thisHero.maxHP;
-            if (thisHero.level1Passed ==true)
+            if (thisHero.level1Passed == true)
             {
                 thisHero.level2Passed = true;
             }
+            thisHero.level1Passed = true;
+            thisHero.EnemyHP = 1.5f;
+            thisHero.HP = thisHero.maxHP;
+         
+
             BattleManager.level += 1;
             GameManager.IsEnemyKilled = false;
+            dialogueFinished = false;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             return;
         }
@@ -107,7 +112,7 @@ public class level2pass : MonoBehaviour
 
     }
 
-    void TransferToNextScene()
+  /*  void TransferToNextScene()
     {
         if (dialogueFinished)
         {
@@ -117,7 +122,7 @@ public class level2pass : MonoBehaviour
             BattleManager.level += 1;
            
         }
-    }
+    }*/
     IEnumerator SetTextUI()
     {
         textFinished = false;

@@ -22,7 +22,7 @@ public class GameSaveManager : MonoBehaviour
     }
     public void SaveGame (){
    
-        Debug.Log(Application.persistentDataPath);
+        Debug.Log("The data stores in"+Application.persistentDataPath);
         if (!Directory.Exists(Application.persistentDataPath + "/game_SaveData"))
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/game_SaveData");
