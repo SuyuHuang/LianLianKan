@@ -17,7 +17,7 @@ public class Sate : Enemy
 
 
     public float attack = 0.02f;
-     float healAmount = 0.05f;
+     float healAmount = 0.02f;
     public GameObject Maps;
     public float hideTime;
     public Slider EnemyHPSlider;
@@ -48,25 +48,27 @@ public class Sate : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
+    
         if (DialogueSystem.dialogueFinished == false)
         {
-            thisHero.HP = thisHero.maxHP;
-            PlayerHPSlider.value = thisHero.maxHP;
+        
         }
         else
         {
             thisHero.EnemyHP = EnemyHPSlider.value;
+            if (GameManager.IsEnemyKilled == false)
+            {
+
+                SwitchAnim();
 
 
-            SwitchAnim();
 
 
 
+                countime = Time.time;
 
-
-            countime = Time.time;
-
-            SwitchAction(countime % 6);
+                SwitchAction(countime % 6);
+            }
 
         }
 

@@ -1,5 +1,5 @@
 PLAYER
-Where is there?
+Where am I?
 SHOPPER
 This is the first level.
 SHOPPER

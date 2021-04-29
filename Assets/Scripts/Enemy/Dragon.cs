@@ -31,6 +31,7 @@ public class Dragon : Enemy
     public float hideTime;
     public Slider EnemyHPSlider;
     public Slider PlayerHPSlider;
+    public static bool Dialogueing;
 
 
 
@@ -54,7 +55,9 @@ public class Dragon : Enemy
     }
     new private void Awake()
     {
-     
+        DialogueSystem.dialogueFinished = false;
+
+
         EnemyHPSlider.maxValue = maxHP;
         EnemyHPSlider.value = thisHero.EnemyHP;
  
@@ -64,27 +67,36 @@ public class Dragon : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        thisHero.EnemyHP = EnemyHPSlider.value;
-        if (DialogueSystem.dialogueFinished == false)
+        if (Dialogueing)
         {
-            thisHero.HP = thisHero.maxHP;
-            PlayerHPSlider.value = thisHero.maxHP;
+            attack = 0;
         }
         else
         {
-
-            SwitchAnim();
-
-
-
-
-
-            countime = Time.time;
-
-            SwitchAction(countime % 6);
+            attack = 0.03f;
         }
-       
+        thisHero.EnemyHP = EnemyHPSlider.value;
+        if (DialogueSystem.dialogueFinished == false)
+        {
+           
+        }
+        else
+        {
+            if (!GameManager.IsOver)
+            {
+
+                SwitchAnim();
+
+
+
+
+
+                countime = Time.time;
+
+                SwitchAction(countime % 6);
+            }
+        }
+
 
 
 

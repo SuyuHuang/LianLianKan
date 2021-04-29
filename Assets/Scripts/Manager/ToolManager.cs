@@ -6,10 +6,7 @@ namespace Scripts
 {
     public class ToolManager : MonoBehaviour
     {
-        /// <summary>
-        /// 根据传来的参数来让道具进行响应
-        /// </summary>
-        /// <param name="toolType"></param>
+       
         public static void InitTool(ToolType toolType)
         {
             switch (toolType)

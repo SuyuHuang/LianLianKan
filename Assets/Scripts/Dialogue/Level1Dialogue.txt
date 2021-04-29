@@ -1,5 +1,5 @@
 SHOPPER
-Hey, you are awake.
+Hey, you are awake. You can Press R or Space Bar to continue.
 PLAYER
 Ahhhh... Where I am.
 SHOPPER

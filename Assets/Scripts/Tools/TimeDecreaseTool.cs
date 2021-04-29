@@ -3,9 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Tools
 {
-    /// <summary>
-    /// 减少时间
-    /// </summary>
+
     public class TimeDecreaseTool : SingleTemplate<TimeDecreaseTool>, ToolBase
     {
         public void OnInit()

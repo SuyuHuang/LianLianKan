@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Restart.cs" />
     <Compile Include="Assets\Scripts\Base\Enemy.cs" />
     <Compile Include="Assets\Scripts\Base\EnemySkills.cs" />
     <Compile Include="Assets\Scripts\Base\Hero.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\Dialogue\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DragonDialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue\Level1Dialogue.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\ReburnDialogue.cs" />
     <Compile Include="Assets\Scripts\Dialogue\level2pass.cs" />
     <Compile Include="Assets\Scripts\Enemy\Dragon.cs" />
     <Compile Include="Assets\Scripts\Enemy\Roshan.cs" />
@@ -150,6 +152,7 @@
     <None Include="Assets\Scripts\Dialogue\DragonPass.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Scripts\Dialogue\RoshanPass.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
@@ -162,6 +165,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Scripts\Dialogue\RoshanReburn.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Scripts\Dialogue\Level1Dialogue.txt" />

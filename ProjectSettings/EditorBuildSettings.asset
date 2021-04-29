@@ -6,18 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prefab/Scenes/MainMenu.unity
+    path: Assets/Prefab/Scenes/UsedScene/MainMenu.unity
     guid: dbbf303fd0a77024c93f43b8fcdaebcf
   - enabled: 1
-    path: Assets/Prefab/Scenes/StartScene.unity
+    path: Assets/Prefab/Scenes/UsedScene/StartScene.unity
     guid: 53e5b048e0911994eb2f8755a1f880a4
   - enabled: 1
-    path: Assets/Prefab/Scenes/LianLianKan.unity
+    path: Assets/Prefab/Scenes/UsedScene/LianLianKan.unity
     guid: 7ba5a7ad01e2c7944813507ec17291f3
   - enabled: 1
-    path: Assets/Prefab/Scenes/Level2.unity
-    guid: aadb21584f3abf84cb77879110384ff0
+    path: Assets/Prefab/Scenes/UsedScene/Level2Demo.unity
+    guid: bd0b9e7cc956ae14ba396d8a6c77f1cd
   - enabled: 1
-    path: Assets/Prefab/Scenes/RoshanDemo.unity
+    path: Assets/Prefab/Scenes/UsedScene/RoshanDemo.unity
     guid: db1aaf83d714f9845a80d74f9f16d089
   m_configObjects: {}

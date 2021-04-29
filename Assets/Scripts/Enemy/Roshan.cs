@@ -32,6 +32,11 @@ public class Roshan : Enemy
     public float hideTime;
     public Slider EnemyHPSlider;
     public Slider PlayerHPSlider;
+    public static bool Dialogueing;
+
+    public AudioSource RoshanSlum;
+    public AudioSource RoshanBash;
+
 
 
 
@@ -55,7 +60,7 @@ public class Roshan : Enemy
     }
     new private void Awake()
     {
-
+        DialogueSystem.dialogueFinished = false;
         EnemyHPSlider.maxValue = maxHP;
         EnemyHPSlider.value = thisHero.EnemyHP;
 
@@ -66,6 +71,14 @@ public class Roshan : Enemy
     void FixedUpdate()
     {
 
+        if (Dialogueing)
+        {
+            attack = 0;
+        }
+        else
+        {
+            attack = 0.04f;
+        }
         if (!canReburn)
         {
             Debug.Log("aaa");
@@ -73,8 +86,7 @@ public class Roshan : Enemy
         thisHero.EnemyHP = EnemyHPSlider.value;
         if (DialogueSystem.dialogueFinished == false)
         {
-            thisHero.HP = thisHero.maxHP;
-            PlayerHPSlider.value = thisHero.maxHP;
+
         }
         else
         {
@@ -150,9 +162,10 @@ public class Roshan : Enemy
         }
     }
 
+ 
     private void CastSkills()
     {
-
+        RoshanSlum.Play();
         PlayerHPSlider.value -= attack*5-attack*thisHero.defend*5;
 
 /*        dragonRoar.Play();
@@ -188,6 +201,7 @@ public class Roshan : Enemy
 
     public void Attack()
     {
+        RoshanBash.Play();
         Anim.SetBool("Attack", true);
         PlayerHPSlider.value -= attack-attack * thisHero.defend;
     }

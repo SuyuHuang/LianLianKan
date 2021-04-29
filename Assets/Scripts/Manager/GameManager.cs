@@ -13,6 +13,9 @@ namespace Scripts
         public GameObject level2Pass;
         public ScriptableHero thisHero;
         public Slider EnemyHPSlider;
+        public GameObject roshanReburnDialogue;
+        public AudioSource RoshanDeath;
+
 
 
 
@@ -34,11 +37,21 @@ namespace Scripts
                 {
                     if (BattleManager.level == 3 && Roshan.canReburn == true)
                     {
+                        Roshan.Dialogueing = true;
+                        roshanReburnDialogue.SetActive(true);
                         thisHero.EnemyHP = Roshan.maxHP;
                         EnemyHPSlider.value = Roshan.maxHP;
                         Roshan.canReburn = false;
                         IsEnemyKilled = false;
                         
+                    }
+                    else if (BattleManager.level==3&&Roshan.canReburn==false)
+                    {
+                        RoshanDeath.Play();
+                        level2Pass.SetActive(true);
+                        IsEnemyKilled = false;
+
+
                     }
                     else
                     {

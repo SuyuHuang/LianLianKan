@@ -54,10 +54,21 @@ public class UIManager : SingleTemplate<UIManager>
     }
     private void OnShopClick()
     {
-        Enemy.SetActive(false);
-        ShopPanel.SetActive(true);
-        Maps.SetActive(false);
-        GameManager.IsPause = true;
+        if (GameManager.IsPause == true)
+        {
+            ShopPanel.SetActive(false);
+            Maps.SetActive(true);
+            GameManager.IsPause = false;
+            Enemy.SetActive(true);
+        }
+        else
+        {
+            Enemy.SetActive(false);
+            ShopPanel.SetActive(true);
+            Maps.SetActive(false);
+            GameManager.IsPause = true;
+        }
+      
     }
     private void OnExitClick()
     {

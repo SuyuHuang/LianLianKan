@@ -11,6 +11,7 @@ public class Timer : SingleTemplate<Timer>
 	public TMP_Text remainingHP;
 
 	private Slider _slider;
+	public static bool timePaused;
 
 
 	public float SliderValue

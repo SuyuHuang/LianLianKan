@@ -16,6 +16,7 @@ public class Level1Dialogue : MonoBehaviour
     public Image faceImage;
     public GameObject Maps;
     public GameObject slider;
+    public ScriptableHero thisHero;
 
 
     [Header("File")]
@@ -52,7 +53,7 @@ public class Level1Dialogue : MonoBehaviour
     void Update()
     {
         TransferToNextScene();
-        if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
         {
             gameObject.SetActive(false);
             index = 0;
@@ -64,7 +65,7 @@ public class Level1Dialogue : MonoBehaviour
        *//*     textLabel.text = textList[index];
             index++;*//*
         }*/
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.Space))
         {
             if (textFinished && !cancelTyping)
             {
@@ -170,6 +171,7 @@ public class Level1Dialogue : MonoBehaviour
         }
         if (index == textList.Count)
         {
+            thisHero.starterPassed = true;
             dialogueFinished = true;
             BattleManager.level = 1;
         }
