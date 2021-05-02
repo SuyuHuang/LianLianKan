@@ -57,6 +57,12 @@ public class DragonDialogue : MonoBehaviour
             index = 0;
             return;
         }
+        if (Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
+        {
+            gameObject.SetActive(false);
+            index = 0;
+            return;
+        }
         /*if (Input.GetKeyDown(KeyCode.R)&&textFinished)
         {
             StartCoroutine(SetTextUI());

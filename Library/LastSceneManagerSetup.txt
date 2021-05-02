@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Prefab/Scenes/UsedScene/Level2Demo.unity
+- path: Assets/Prefab/Scenes/UsedScene/MainMenu.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

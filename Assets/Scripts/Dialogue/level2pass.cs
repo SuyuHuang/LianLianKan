@@ -57,7 +57,7 @@ public class level2pass : MonoBehaviour
     {
         
        /* TransferToNextScene();*/
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
+        if ( Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
         {
             Dragon.Dialogueing = false;
             GameManager.IsPause = false;
@@ -74,9 +74,45 @@ public class level2pass : MonoBehaviour
             }
             if (thisHero.level1Passed == true)
             {
+                thisHero.EnemyHP = 2f;
                 thisHero.level2Passed = true;
             }
             
+            else
+            {
+                thisHero.level1Passed = true;
+                thisHero.EnemyHP = 1.5f;
+                thisHero.HP = thisHero.maxHP;
+
+
+                BattleManager.level += 1;
+                GameManager.IsEnemyKilled = false;
+                dialogueFinished = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
+        {
+            Dragon.Dialogueing = false;
+            GameManager.IsPause = false;
+            gameObject.SetActive(false);
+            index = 0;
+            dialogueFinished = true;
+            if (thisHero.level1Passed == true && thisHero.level2Passed == true && Roshan.canReburn == false)
+            {
+
+                Maps.SetActive(false);
+                GameManager.IsPause = true;
+                Enemy.SetActive(false);
+                PassPanel.SetActive(true);
+            }
+            if (thisHero.level1Passed == true)
+            {
+                thisHero.EnemyHP = 2f;
+                thisHero.level2Passed = true;
+            }
+
             else
             {
                 thisHero.level1Passed = true;

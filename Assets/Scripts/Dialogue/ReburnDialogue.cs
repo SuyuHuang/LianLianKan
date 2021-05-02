@@ -57,7 +57,17 @@ public class ReburnDialogue : MonoBehaviour
         /*   if(!thisHero.level1Passed)*/
         /* TransferToNextScene();*/
 
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
+    
+        if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
+        {
+            GameManager.IsPause = false;
+            Roshan.Dialogueing = false;
+            gameObject.SetActive(false);
+            index = 0;
+            dialogueFinished = true;
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
         {
             GameManager.IsPause = false;
             Roshan.Dialogueing = false;
