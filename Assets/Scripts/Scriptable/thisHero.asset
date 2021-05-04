@@ -15,13 +15,13 @@ MonoBehaviour:
   attack: 0.05
   healamount: 0.005
   iscorrect: 0
-  darkpersist: 1
+  darkpersist: 0
   defend: 0.26394933
-  coinnumber: 1395
-  HP: 0.9532551
+  coinnumber: 247
+  HP: 0.9691949
   maxHP: 1
-  EnemyHP: 1.9000001
-  starterPassed: 0
-  level1Passed: 0
-  level2Passed: 0
+  EnemyHP: 0.34499982
+  starterPassed: 1
+  level1Passed: 1
+  level2Passed: 1
   roshanKilled: 0

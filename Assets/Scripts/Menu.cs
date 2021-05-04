@@ -28,6 +28,9 @@ public class Menu : MonoBehaviour
                 FileStream file2 = File.Open(Application.persistentDataPath + "/game_SaveData/playerData.txt", FileMode.Open);
                 JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file2), thisHero);
                 ItemOnSale.coinChanged = true;
+                thisHero.starterPassed = true;
+                thisHero.level1Passed = false ;
+                thisHero.level2Passed = false; ;
                 file2.Close();
             }
         }
@@ -41,6 +44,9 @@ public class Menu : MonoBehaviour
                 FileStream file2 = File.Open(Application.persistentDataPath + "/game_SaveData/playerData.txt", FileMode.Open);
                 JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file2), thisHero);
                 ItemOnSale.coinChanged = true;
+                thisHero.starterPassed = true;
+                thisHero.level1Passed = true;
+                thisHero.level2Passed = false; ;
                 file2.Close();
             }
         }
@@ -53,6 +59,9 @@ public class Menu : MonoBehaviour
             {
                 FileStream file2 = File.Open(Application.persistentDataPath + "/game_SaveData/playerData.txt", FileMode.Open);
                 JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file2), thisHero);
+                thisHero.starterPassed = true;
+                thisHero.level1Passed = true;
+                thisHero.level2Passed = true;
                 ItemOnSale.coinChanged = true;
                 file2.Close();
             }
