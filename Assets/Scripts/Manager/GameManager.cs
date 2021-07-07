@@ -72,7 +72,7 @@ namespace Scripts
             {
 
              
-                Debug.Log(JudgeLink.level0count);
+
                 if (JudgeLink.level0count == 8)
                 {
                     IsFinished = true;

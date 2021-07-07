@@ -20,7 +20,7 @@ public class Roshan : Enemy
     public float currentTime = 2f;
     public Camera mainCanera;
     public static float maxHP = 2f;
-    public static bool canReburn ;
+    public static bool canReburn=true;
 
     // 弹幕计时
     private float invokeTime;

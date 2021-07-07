@@ -341,6 +341,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   audioMixer: {fileID: 0}
   thisHero: {fileID: 11400000, guid: df6bde220251340458008675f570ec1d, type: 2}
+  myInventory: {fileID: 11400000, guid: c3dcb2dd1dc074e45aaae9c8a6390747, type: 2}
 --- !u!95 &52321478
 Animator:
   serializedVersion: 3

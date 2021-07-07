@@ -92,7 +92,7 @@ public class level2pass : MonoBehaviour
             }
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
+        if (Input.GetKeyDown(KeyCode.R) && index == textList.Count)
         {
             Dragon.Dialogueing = false;
             GameManager.IsPause = false;
